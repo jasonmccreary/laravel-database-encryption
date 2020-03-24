@@ -10,6 +10,8 @@
 
 namespace AustinHeap\Database\Encryption\Tests;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use AustinHeap\Database\Encryption\EncryptionFacade;
 use AustinHeap\Database\Encryption\EncryptionServiceProvider;
 use DB, RuntimeException, ReflectionClass;
@@ -25,7 +27,7 @@ class TestCase extends BaseTestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('app.key', str_random(32));
+        $app['config']->set('app.key', Str::random(32));
         $app['config']->set('database-encryption.enabled', true);
     }
 
@@ -52,7 +54,7 @@ class TestCase extends BaseTestCase
     protected function newRandom($value)
     {
         if (is_array($value)) {
-            $value = array_random($value);
+            $value = Arr::random($value);
         }
 
         $this->last_random = is_string($value) ? sprintf($value, (string)rand(1111, 9999)) : $value;

@@ -10,6 +10,7 @@
 
 namespace AustinHeap\Database\Encryption\Tests;
 
+use Illuminate\Support\Str;
 use AustinHeap\Database\Encryption\Tests\Models\DatabaseModel;
 use DB, RuntimeException;
 
@@ -31,7 +32,7 @@ class DatabaseTestCase extends TestCase
     protected function getEnvironmentSetUp($app): void
     {
         if (is_null(self::$database)) {
-            self::$database = 'laravel_database_encryption_testing_' . str_random(6);
+            self::$database = 'laravel_database_encryption_testing_' . Str::random(6);
         }
 
         $this->setUpDatabase();
